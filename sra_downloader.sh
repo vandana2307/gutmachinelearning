@@ -49,9 +49,10 @@ else
         --transcriptome=${reference_path}
     done
 
-    #rm -rf ${dest_dir}/prefetch_output/*
+    rm -rf ${dest_dir}/prefetch_output/*
     rm -rf ${dest_dir}/fasterq_dumps/*
     rm -rf ${dest_dir}/gzip_files/*
+    find "${dest_dir}/run_count_${gzipdir}" -mindepth 1 -maxdepth 1 ! -name "filtered_feature_bc_matrix" -exec rm -rf {} \;
   done < "${sra_file_path}"
 
 fi
