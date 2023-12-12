@@ -25,7 +25,7 @@ else
 
   while IFS= read -r line; do
     cd "${dest_dir}/prefetch_output"
-    $prefetch_cmd ${line} ${dest_dir} "${dest_dir}/prefetch_output"
+    $prefetch_cmd --max-size 200g ${line}
     prefetch_dir=$(ls "${dest_dir}/prefetch_output")
     $fasterq_dump_cmd --split-files ${prefetch_dir} --outdir "${dest_dir}/fasterq_dumps"
     
