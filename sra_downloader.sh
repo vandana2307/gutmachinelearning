@@ -25,6 +25,7 @@ else
   mkdir -p "${dest_dir}/fasterq_dumps"
 
   while IFS= read -r line; do
+    line=$(echo "${line}" | awk '{$1=$1};1')
     cd "${dest_dir}/prefetch_output"
     $prefetch_cmd --max-size 200g ${line}
     prefetch_dir=$(ls "${dest_dir}/prefetch_output")
