@@ -48,7 +48,7 @@ else
     wget -c "${link1}"
     wget -c "${link2}"
     run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_S1_L001_R([0-9]+)_001.fastq.gz/\1/g')
-    mkdir "${dest_dir}/gzip_files/${run_id}"
+    mkdir -p "${dest_dir}/gzip_files/${run_id}"
     find "${dest_dir}/gzip_files" -type f -exec mv {} "${dest_dir}/gzip_files/${run_id}" \;
 
     cd "${dest_dir}"
