@@ -20,7 +20,7 @@ else
 
   #prefetch_cmd="${sratoolkit_bin_path}/prefetch"
   #fasterq_dump_cmd="${sratoolkit_bin_path}/fasterq-dump"
-  #cellranger_cmd="${cellranger_bin_path}/cellranger"
+  cellranger_cmd="${cellranger_bin_path}/cellranger"
   #mkdir -p "${dest_dir}/prefetch_output"
   #mkdir -p "${dest_dir}/fasterq_dumps"
   mkdir -p "${dest_dir}/gzip_files"
