@@ -23,6 +23,7 @@ else
   #cellranger_cmd="${cellranger_bin_path}/cellranger"
   #mkdir -p "${dest_dir}/prefetch_output"
   #mkdir -p "${dest_dir}/fasterq_dumps"
+  mkdir -p "${dest_dir}/gzip_files"
 
   while IFS= read -r line; do
     line=$(echo "${line}" | awk '{$1=$1};1')
