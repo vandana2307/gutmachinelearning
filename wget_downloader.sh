@@ -47,13 +47,13 @@ else
     #done
     wget -c "${link1}"
     wget -c "${link2}"
-    
+    run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_([0-9]+).fastq.gz/\1/g')
 
     cd "${dest_dir}"
-    ls "${dest_dir}/gzip_files" | while IFS= read -r gzipdir; do
-      $cellranger_cmd count --id="run_count_${gzipdir}" \
-        --fastqs="${dest_dir}/gzip_files/${gzipdir}" \
-        --sample=${gzipdir} \
+    ls "${dest_dir}/gzip_files" | while IFS= read -r gzipfile; do
+      $cellranger_cmd count --id="run_count_${run_id}" \
+        --fastqs="${dest_dir}/gzip_files/${gzipfile}" \
+        --sample=${run_id} \
         --transcriptome=${reference_path}
     done
 
