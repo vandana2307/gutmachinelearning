@@ -45,8 +45,8 @@ else
     #  mkdir -p "${dest_dir}/gzip_files/${sample_name}"
     #  mv "${dest_dir}/fasterq_dumps/${gzipfile}" "${dest_dir}/gzip_files/${sample_name}/${new_name}"
     #done
-    wget "${link1}"
-    wget "${link2}"
+    wget -c "${link1}"
+    wget -c "${link2}"
     
 
     cd "${dest_dir}"
