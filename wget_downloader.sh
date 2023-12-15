@@ -27,8 +27,7 @@ else
 
   while IFS= read -r line; do
     line=$(echo "${line}" | awk '{$1=$1};1')
-    link1=$(echo "${line}" | sed -r 's/(.*) (.*)/\1/g')
-    link2=$(echo "${line}" | sed -r 's/(.*) (.*)/\2/g')
+    links=$(echo "${line}" | tr ' ' '\n')
     cd "${dest_dir}/gzip_files"
     #$prefetch_cmd --max-size 200g ${line}
     #prefetch_dir=$(ls "${dest_dir}/prefetch_output")
@@ -45,9 +44,8 @@ else
     #  mkdir -p "${dest_dir}/gzip_files/${sample_name}"
     #  mv "${dest_dir}/fasterq_dumps/${gzipfile}" "${dest_dir}/gzip_files/${sample_name}/${new_name}"
     #done
-    wget -c "${link1}"
-    wget -c "${link2}"
-    run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_S1_L001_R([0-9]+)_001.fastq.gz/\1/g')
+    echo "${links}" | xargs -I {} wget -c {}
+    run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_S([0-9]+)_L([0-9+])_R([0-9]+)_([0-9]+).fastq.gz/\1/g')
     mkdir -p "${dest_dir}/gzip_files/${run_id}"
     find "${dest_dir}/gzip_files" -type f -exec mv {} "${dest_dir}/gzip_files/${run_id}" \;
 
