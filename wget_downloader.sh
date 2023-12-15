@@ -45,7 +45,7 @@ else
     #  mv "${dest_dir}/fasterq_dumps/${gzipfile}" "${dest_dir}/gzip_files/${sample_name}/${new_name}"
     #done
     echo "${links}" | xargs -I {} wget -c {}
-    run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_S([0-9]+)_L([0-9+])_R([0-9]+)_([0-9]+).fastq.gz/\1/g')
+    run_id=$(ls "${dest_dir}/gzip_files" | head -n1 | sed -r 's/(.*)_S([0-9]+)_L([0-9]+)_R([0-9]+)_([0-9]+).fastq.gz/\1/g')
     mkdir -p "${dest_dir}/gzip_files/${run_id}"
     find "${dest_dir}/gzip_files" -type f -exec mv {} "${dest_dir}/gzip_files/${run_id}" \;
 
